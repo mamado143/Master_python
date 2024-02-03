@@ -15,3 +15,8 @@
 #     print(f"The value {x} is an integer")
 
 # print("Print Message After If condition")
+try:
+    number = int(input("Enter your Age:"))
+    print(number)
+except ValueError:
+    print("Please enter a valid number")
