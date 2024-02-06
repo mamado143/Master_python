@@ -4,10 +4,12 @@ class Members:
     users_num = 0
     
     
-    @classmethod
+    @classmethod  # Are used when you want to do something with the class itself.
     def show_users_count(cls):
         print(f"We have {cls.users_num} in our system.")
-         
+    @staticmethod   #Used when doing something doesnt have access to object or class but related to class
+    def sayHello():
+        print("Hello from static method")  
     def __init__(self, first_name, middle_name, last_name, gender):
         self.fname = first_name
         self.age = 20
@@ -49,10 +51,11 @@ member_two = Members("Hamda", "Saciid", "Mohamoud", "Female")
 Member_Three = Members("siil", "Khalid", "siciid", "Male")
 print(member_one.get_all_info())
 print(member_two.get_all_info())
-print(Members.users_num )
 print(Member_Three.delete_user())
 print(Members.users_num)
+print(Member_Three.get_all_info())
+print(Members.users_num)
 Members.show_users_count()
+Members.sayHello()
 print("#" * 50)
-print(Members.full_name(member_one))
 
