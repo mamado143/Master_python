@@ -3,6 +3,9 @@ class Members:
     not_allowed_names = ["Hell", "Shit", "Wasmo"]
     users_num = 0
 
+    def show_users_count():
+        pass
+
 
 
     def __init__(self, first_name, middle_name, last_name, gender):
@@ -34,12 +37,20 @@ class Members:
         return f"{self.name_with_title()}\n\nYour Full Name is  {self.full_name()}\n"
 
     def delete_user(self):
-        pass
+        Members.users_num -= 1
 
+        return f"User {self.fname} Deleted"
+
+
+print("#" * 50)
 print(Members.users_num)
 member_one = Members("Mido", "Dahir", "Mohamoud", "Male")
 member_two = Members("Hamda", "Saciid", "Mohamoud", "Female")
-
+Member_Three = Members("siil", "Khalid", "siciid", "Male")
 print(member_one.get_all_info())
 print(member_two.get_all_info())
 print(Members.users_num )
+print(Member_Three.delete_user())
+print(Members.users_num)
+print("#" * 50)
+
