@@ -1,2 +1,4 @@
-food_two.eat()
-print(food_one)
+for xayawan in [fido, isis]:
+#     print(type(xayawan))
+#     print(xayawan.speak())
+

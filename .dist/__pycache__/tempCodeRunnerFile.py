@@ -1,0 +1,1 @@
+one.say_hello()
