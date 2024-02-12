@@ -21,8 +21,6 @@ class UserManagement(cmd.Cmd):
             print("Create a new user Syntax: 'create <digit> <name>'")
 
 
-    def do_quit(self, line):
-        return True
     def do_read(self, line):
         """Read and Sisplay all users"""
         print("List of users:")
@@ -30,7 +28,7 @@ class UserManagement(cmd.Cmd):
             print(f"ID: {digit}, and Name: {name}")
     def do_update(self, line):
         """Update a user Syntax: 'update <digit> <name>'"""
-        args = line.split()
+        args = line.spilt()
         if len(args) == 2:
             digit, name = args
             if digit in self.users:
@@ -40,8 +38,18 @@ class UserManagement(cmd.Cmd):
                 print("User does not exist")
         else:
             print("Update a user Syntax: 'update <digit> <name>'")
-    
+    def do_destroy(self, line):
 
+        """Delete a User by ID "Syntax: 'create <digit> <name>'"""
+        if line in self.users:
+            del self.users[line]
+            print("User deleted - ID: {line} ")
+        else:
+            print(f"No user found with ID {line}")
+    
+    def do_quit(self, line):
+        """Quit the shell"""
+        return True
 
 if __name__ == '__main__':
     UserManagement().cmdloop()
