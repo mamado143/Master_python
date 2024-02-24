@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import cmd
 import json
+import os  # Import the os module for clearing the screen
+
 
 class UserManagement(cmd.Cmd):
     """Simple CRUD Command for managing users"""
@@ -28,6 +30,7 @@ class UserManagement(cmd.Cmd):
         print("List of users:")
         for digit, name in self.users.items():
             print(f"ID: {digit}, and Name: {name}")
+        self.load_from_file()
 
     def do_update(self, line):
         """Update a user Syntax: 'update <digit> <name>'"""
@@ -68,6 +71,42 @@ class UserManagement(cmd.Cmd):
                 return json.load(json_file)
         except FileNotFoundError:
             return None
+    def do_clear(self, line):
+        """Clear the screen"""
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+    # Existing methods...
+
+    def cmdloop(self):
+        """Repeatedly issue prompt, accept input, parse and execute commands until termination"""
+        self.preloop()
+        while True:
+            try:
+                line = input(self.prompt).strip()
+            except EOFError:
+                line = 'quit'
+            self.onecmd(line)
+            if line == 'quit':
+                break
+        self.postloop()
+
+    # Existing methods...
+    def do_ls(self, line):
+        """List files and directories in the current directory"""
+        files = os.listdir('.')
+        for file in files:
+            print(file)
+    def do_pwd(self, line):
+        """Print the current working directory"""
+        print(os.getcwd())
+    def do_cd(self, line):
+        """Change the current working directory"""
+        if line:
+            os.chdir(line)
+        else:
+            print("Usage: cd <directory>")
+    
 
 if __name__ == '__main__':
+    print("hello world")
     UserManagement().cmdloop()
